@@ -1,0 +1,11 @@
+{
+  "name": "dif-sign-loader",
+  "version": "1.0.1",
+  "description": "\"条件编译loader\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ChuZhaoJie",
+  "license": "ISC"
+}
