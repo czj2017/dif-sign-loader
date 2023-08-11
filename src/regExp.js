@@ -1,12 +1,16 @@
-let htmlAllpattern = new RegExp(`<!--((\\s|\\t)*)#if[\\s|\\t](.*?)<!--((\\s|\\t)*)#endif((\\s|\\t)*)-->`, 'sg');
-let htmlSmallpattern = new RegExp(`<!--((\\s|\\t)*)#if[\\s|\\t](.*?)-->`, 'sg');
-let htmlAllNopattern = new RegExp(`<!--((\\s|\\t)*)#ifnot[\\s|\\t](.*?)<!--((\\s|\\t)*)#endif((\\s|\\t)*)-->`, 'sg');
-let htmlSmallNopattern = new RegExp(`<!--((\\s|\\t)*)#ifnot[\\s|\\t](.*?)-->`, 'sg');
+function createPattern(prefix, condition) {
+    return new RegExp(`(${prefix}((\\s|\\t)*)#if[\\s|\\t](${condition}))((.|\\n)*?)${prefix}((\\s|\\t)*)#endif((\\s|\\t)*)`, 'sg');
+}
 
-let javascriptAllpattern = new RegExp(`//((\\s|\\t)*)#if[\\s|\\t](.*?)//((\\s|\\t)*)#endif((\\s|\\t)*)`, 'sg');
-let javascriptSmallpattern = new RegExp(`//((\\s|\\t)*)#if[\\s|\\t](.*?)\\n`, 'sg');
-let javascriptAllNopattern = new RegExp(`//((\\s|\\t)*)#ifnot[\\s|\\t](.*?)//((\\s|\\t)*)#endif((\\s|\\t)*)`, 'sg');
-let javascriptSmallNopattern = new RegExp(`//((\\s|\\t)*)#ifnot[\\s|\\t](.*?)\\n`, 'sg');
+let htmlAllpattern = createPattern('<!--', '.*?');
+let htmlSmallpattern = createPattern('<!--', '.*?');
+let htmlAllNopattern = createPattern('<!--', 'not .*?');
+let htmlSmallNopattern = createPattern('<!--', 'not .*?');
+
+let javascriptAllpattern = createPattern('//', '.*?');
+let javascriptSmallpattern = createPattern('//', '.*?');
+let javascriptAllNopattern = createPattern('//', 'not .*?');
+let javascriptSmallNopattern = createPattern('//', 'not .*?');
 
 module.exports = {
   htmlAllpattern,
